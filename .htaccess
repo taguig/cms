@@ -1,0 +1,2 @@
+RewriteEngine On
+Rewriterule ([a-zA-Z0-9]*)  index.php
