@@ -18,9 +18,9 @@ return true;
 
 public function  View(){
 $data=$this->getData();
-$viewHeader=call_user_func(array($this,$this->viewHeader),$data);
-$viewBody=call_user_func(array($this,$this->viewBody),$data);
-$viewFooter=call_user_func(array($this,$this->viewFooter),$data);
+$viewHeader=call_user_func(array($this,$this->viewHeader),$data->getDataHeader());
+$viewBody=call_user_func(array($this,$this->viewBody),$data->getDataBody());
+$viewFooter=call_user_func(array($this,$this->viewFooter),$data->getDataFooter());
 return $viewHeader->toString()."\n".$viewBody->toString()."\n".$viewFooter->toString();
 }
 public abstract function viewHeader($data);
