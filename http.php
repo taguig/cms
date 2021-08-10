@@ -2,11 +2,12 @@
 class http {
 
 private $param = [];
-private $instance=null;
+private static $instance=null;
 private $ExtentionImage="png|jpg|jpeg|gif";
 private $ExtentionDoc="doc|docs|pdf|xls";
 private $ExtentionCss="css";
 private $ExtentionJs="js";
+private $ExtentionAjax="ajax";
 private $adressePage = [];
 private $contentTypeImage = [ 
         "png" => "image/png",
@@ -27,24 +28,27 @@ private $contentTypeImage = [
     }
     public function route(){
         if ($this->valideteExtention($this->ExtentionImage)) {
-
+            echo "image";
         return ;
-        }else if($this->valideteExtention($this->ExtentionImage)){
-
+        }else if($this->valideteExtention($this->ExtentionDoc)){
+           echo "doc";
+         return ;
+        }else if($this->valideteExtention($this->ExtentionAjax)){
+           echo "ajax";
          return ;
         }else if($this->valideteExtention($this->ExtentionCss)){
-
+           echo "css";
          return ;
         }else if($this->valideteExtention($this->ExtentionJs)){
-            
+          echo "js";
         return ;
         }else {
-
+          echo "page";
         return ;
         }
     }
     private function valideteExtention($Extention){
-       return preg_match('/\.(?:'+$Extention+')$/', $_SERVER["REQUEST_URI"]);
+       return preg_match('/\.(?:'.$Extention.')$/', $_SERVER["REQUEST_URI"]);
     }
   public function setParam($name, $value)
     {
