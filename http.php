@@ -5,6 +5,8 @@ private $param = [];
 private $instance=null;
 private $ExtentionImage="png|jpg|jpeg|gif";
 private $ExtentionDoc="doc|docs|pdf|xls";
+private $ExtentionCss="css";
+private $ExtentionJs="js";
 private $adressePage = [];
 private $contentTypeImage = [ 
         "png" => "image/png",
@@ -16,7 +18,6 @@ private $contentTypeImage = [
         "pdf"=>"",
         "xls"=>""
     ];
-
    public static function getInstance()
     {
         if (empty(self::$instance)) {
@@ -24,11 +25,32 @@ private $contentTypeImage = [
         }
         return self::$instance;
     }
+    public function route(){
+        if ($this->valideteExtention($this->ExtentionImage)) {
+
+        return ;
+        }else if($this->valideteExtention($this->ExtentionImage)){
+
+         return ;
+        }else if($this->valideteExtention($this->ExtentionCss)){
+
+         return ;
+        }else if($this->valideteExtention($this->ExtentionJs)){
+            
+        return ;
+        }else {
+
+        return ;
+        }
+    }
+    private function valideteExtention($Extention){
+       return preg_match('/\.(?:'+$Extention+')$/', $_SERVER["REQUEST_URI"]);
+    }
   public function setParam($name, $value)
     {
         $this->param[$name] = $value;
     }
-     public function ExtracteData()
+     public function extracteData()
     {
         $data = explode("/", $_SERVER["REQUEST_URI"]);
         array_map(function ($a) {
