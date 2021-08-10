@@ -15,7 +15,16 @@ foreach ($this->middleware as $value) {
 }
 return true;
 } 
-public abstract function viewHeader();
-public abstract function viewBody();
-public abstract function viewFooter();
+
+public function  View(){
+$data=$this->getData();
+$viewHeader=call_user_func(array($this,$this->viewHeader),$data);
+$viewBody=call_user_func(array($this,$this->viewBody),$data);
+$viewFooter=call_user_func(array($this,$this->viewFooter),$data);
+return $viewHeader->toString()."\n".$viewBody->toString()."\n".$viewFooter->toString();
+}
+public abstract function viewHeader($data);
+public abstract function viewBody($data);
+public abstract function viewFooter($data);
+public abstract function getData();
 }

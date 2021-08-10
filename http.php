@@ -13,6 +13,10 @@ private $contentTypeImage = [
         "png" => "image/png",
         "jpg"=>"image/jpeg"
     ];
+private $ErrorPage=[
+    '404'=>""
+];
+
     private $contentTypeDoc = [ 
         "doc" => "",
         "docs"=>"" ,
