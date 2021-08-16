@@ -9,9 +9,14 @@ abstract class page {
     
 public function execMiddleware():bool{
 foreach ($this->middleware as $value) {
-    if (!call_user_func(array($this,$value))){
+  if(function_exists(array($this,$value))){
+ if (!call_user_func(array($this,$value))){
       throw new Exception("Erreur dans le middelware ".$value);
     }
+  }else {
+     throw new Exception(" middelware n'existe pas ".$value);
+  }
+   
 }
 return true;
 } 

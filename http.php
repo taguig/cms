@@ -47,7 +47,7 @@ private $ErrorPage=[
           echo "js";
         return ;
         }else {
-          echo "page";
+          echo "page ";
         return ;
         }
     }
