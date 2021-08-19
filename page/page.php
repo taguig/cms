@@ -2,9 +2,12 @@
 abstract class page {
 
     protected $middleware =[];
-    private $nameFacHeader="viewHeader";
-    private $nameFacBody="viewBody";
-    private $nameFacFooter="viewFooter";
+    protected $nameFacHeader="viewHeader";
+    protected $nameFacBody="viewBody";
+    protected $nameFacFooter="viewFooter";
+    protected $isCacheHeader=true;
+    protected $isCacheBody=true;
+    protected $isCacheFooter=true;
 
     
 public function execMiddleware():bool{
@@ -23,10 +26,29 @@ return true;
 
 public function  View(){
 $data=$this->getData();
-$viewHeader=call_user_func(array($this,$this->viewHeader),$data->getDataHeader());
-$viewBody=call_user_func(array($this,$this->viewBody),$data->getDataBody());
-$viewFooter=call_user_func(array($this,$this->viewFooter),$data->getDataFooter());
-return $viewHeader->toString()."\n".$viewBody->toString()."\n".$viewFooter->toString();
+if(cache::ExistsHeadCache($name) && $this->isCacheHeader){
+$viewHeader=cache::getHeadCache($name);
+}else{
+  $viewHeader=call_user_func(array($this,$this->viewHeader),$data->getDataHeader())->toString();
+  cache::createHeadCache($name,$viewHeader);
+}
+
+
+if(cache::ExistsBodyCache($name) && $this->isCacheBody){
+$viewBody=cache::getBodyCache($name);
+}else{
+  $viewBody=call_user_func(array($this,$this->viewBody),$data->getDataBody())->toString();
+  cache::createBodyCache($name,$viewBody);
+}
+
+if(cache::ExistsFooterCache($name) && $this->isCacheFooter){
+ $viewFooter=cache::getFooterCache($name);
+}else{
+  $viewFooter=call_user_func(array($this,$this->viewFooter),$data->getDataFooter())->toString();
+  cache::createFooterCache($name,$viewFooter);
+}
+
+return $viewHeader."\n".$viewBody."\n".$viewFooter;
 }
 public abstract function viewHeader($data);
 public abstract function viewBody($data);

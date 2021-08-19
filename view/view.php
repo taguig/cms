@@ -1,19 +1,21 @@
 <?php 
 class view {
+    private $dataView;
     private $data;
+    private $name;
     public function  __construct($name,$data=null){
-       if(file_exists("view/pageView/".$name.".php")){
-           extract($data);
-           ob_start();
-           require ("view/pageView/".$name.".php");
-           $this->data=ob_get_contents();
-           ob_end_clean(); 
-           
-       }else {
-           throw new Exception("le ficher n'exite pas ".$name);
-       }
+      $this->name=$name;
+      $this->data=$data;
+    }
+    public function Convert(){
+        $code="";
+        if(file_exists("/view/pageview/".$this->name.".view")){
+                  
+        }else {
+            throw new Exception("la view ".$this->name." est introuvable");
+        }
     }
     public function toString(){
-        return $this->data;
+        return $this->dataView;
     }
 }
