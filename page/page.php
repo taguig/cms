@@ -1,5 +1,5 @@
 <?php
-abstract class page {
+ class page {
 
     protected $middleware =[];
     protected $nameFacHeader="viewHeader";
@@ -27,33 +27,44 @@ return true;
 public function  View(){
 $data=$this->getData();
 $name=$this->getName();
+$stringHeader="";
+$stringBody="";
+$stringFooter="";
 if(cache::ExistsHeadCache($name) && $this->isCacheHeader){
-$viewHeader=cache::getHeadCache($name);
+$stringHeader=cache::getHeadCache($name);
 }else{
-  $viewHeader=call_user_func(array($this,$this->viewHeader),$data->getDataHeader())->toString();
-  cache::createHeadCache($name,$viewHeader);
+  $viewHeader=call_user_func(array($this,$this->nameFacHeader),$data->getDataHeader());
+   $viewHeader->Convert();
+   $stringHeader=$viewHeader->toString();
+  cache::createHeadCache($name,$stringHeader,$this->isCacheHeader);
 }
 
 
 if(cache::ExistsBodyCache($name) && $this->isCacheBody){
-$viewBody=cache::getBodyCache($name);
+$stringBody=cache::getBodyCache($name);
 }else{
-  $viewBody=call_user_func(array($this,$this->viewBody),$data->getDataBody())->toString();
-  cache::createBodyCache($name,$viewBody);
+  $viewBody=call_user_func(array($this,$this->nameFacBody),$data->getDataBody());
+   $viewBody->Convert();
+   $stringBody=$viewBody->toString();
+  cache::createBodyCache($name,$stringBody,$this->isCacheBody);
 }
 
 if(cache::ExistsFooterCache($name) && $this->isCacheFooter){
- $viewFooter=cache::getFooterCache($name);
+ $stringFooter=cache::getFooterCache($name);
 }else{
-  $viewFooter=call_user_func(array($this,$this->viewFooter),$data->getDataFooter())->toString();
-  cache::createFooterCache($name,$viewFooter);
+  $viewFooter=call_user_func(array($this,$this->nameFacFooter),$data->getDataFooter());
+  $viewFooter->Convert();
+   $stringFooter=$viewFooter->toString();
+  cache::createFooterCache($name,$stringFooter,$this->isCacheFooter);
 }
 
-return $viewHeader."\n".$viewBody."\n".$viewFooter;
+return $stringHeader."\n".$stringBody."\n".$stringFooter;
 }
-public abstract function viewHeader($data);
-public abstract function viewBody($data);
-public abstract function viewFooter($data);
-public abstract function getData();
-protected abstract function getName();
+public  function viewHeader($data){}
+public  function viewBody($data){}
+public  function viewFooter($data){}
+public  function getData(){
+  return new dataView();
+}
+protected  function getName(){}
 }

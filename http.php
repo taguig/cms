@@ -1,4 +1,5 @@
 <?php 
+include "page/page/index.php";
 class http {
 
 private $param = [];
@@ -58,7 +59,8 @@ private $ErrorPage=[
           echo "js";
         return ;
         }else {
-          echo "page ";
+          $doc=new index();
+         echo $doc->View();
         return ;
         }
     }

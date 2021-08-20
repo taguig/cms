@@ -1,0 +1,12 @@
+<p>This is a paragraph.</p>
+
+
+{%user:v%}
+<div>{%bill%}<div/>
+{%enduser%}
+
+{%user:a%}
+<div>{%data%}<div/>
+{%enduser%}
+
+
