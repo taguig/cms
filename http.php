@@ -9,6 +9,7 @@ private $ExtentionCss="css";
 private $ExtentionJs="js";
 private $ExtentionAjax="ajax";
 private $adressePage = [];
+private $typeUser="v";
 private $contentTypeImage = [ 
         "png" => "image/png",
         "jpg"=>"image/jpeg"
@@ -29,6 +30,16 @@ private $ErrorPage=[
             self::$instance = new self();
         }
         return self::$instance;
+    }
+    public function getTypeUser(){
+        return $this->typeUser;
+    }
+    public function setTypeUser($value){
+        if(preg_match("/(v|u|a)/",$value)){
+            $this->typeUser=$value;
+        }else {
+            throw new Exception("valeur non accepte");
+        }
     }
     public function route(){
         if ($this->valideteExtention($this->ExtentionImage)) {
@@ -95,6 +106,9 @@ private $ErrorPage=[
             return $_POST[$key];
         }
         return false;
+    }
+    public static function startSession(){
+         session_start();
     }
 }
 

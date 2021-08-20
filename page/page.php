@@ -26,6 +26,7 @@ return true;
 
 public function  View(){
 $data=$this->getData();
+$name=$this->getName();
 if(cache::ExistsHeadCache($name) && $this->isCacheHeader){
 $viewHeader=cache::getHeadCache($name);
 }else{
@@ -54,4 +55,5 @@ public abstract function viewHeader($data);
 public abstract function viewBody($data);
 public abstract function viewFooter($data);
 public abstract function getData();
+protected abstract function getName();
 }

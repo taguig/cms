@@ -1,7 +1,7 @@
 <?php
 
 class cache {
-    public static function getHeadCache($name){
+    public static function getHeadCache($name){   
               $cache=file_get_contents("page/cache/Head".$name.".cache");
               return $cache;     
     }
