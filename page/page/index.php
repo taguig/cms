@@ -1,9 +1,9 @@
 <?php
 class index extends page {
    public function __construct(){
-      $this->isCacheHeader=false;
-      $this->isCacheBody=false;
-      $this->isCacheFooter=false;
+      $this->isCacheHeader=true;
+      $this->isCacheBody=true;
+      $this->isCacheFooter=true;
    }
 public  function viewHeader($data){
    $f=new view("header",["data"=>"header html"]);  
