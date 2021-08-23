@@ -1,12 +1,45 @@
 <p>This is a paragraph.</p>
-
-
-{%user:v%}
+{%user:a%}
 <div>{%bill%}<div/>
 {%enduser%}
-
 {%user:a%}
+<div>{%bill%}<div/>
+{%enduser%}
+{%user:a%}
+<div>{%bill%}<div/>
+{%enduser%}
+{%user:a%}
+<div>{%bill%}<div/>
+{%enduser%}
+{%user:a%}
+<div>{%bill%}<div/>
+{%enduser%}
+{%user:a%}
+<div>{%bill%}<div/>
+{%enduser%}
+{%user:a%}
+<div>{%bill%}<div/>
+{%enduser%}
+{%user:a%}
+<div>{%bill%}<div/>
+{%enduser%}
+{%user:a%}
+<div>{%bill%}
+{%composion bodytest data1%}
+<div/>
+
+{%enduser%}
+{%user:a%}
+{%composion body data1%}
+{%enduser%}
+
+{%user:v%}
 <div>{%data%}<div/>
 {%enduser%}
+{%user:v%}
+<div>{%data%}<div/>
+{%enduser%}
+
+
 
 

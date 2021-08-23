@@ -3,17 +3,40 @@ class view {
     private $dataView;
     private $data;
     private $name;
+    private $filter=[];
     public function  __construct($name,$data=null){
       $this->name=$name;
       $this->data=$data;
+      $this->init();
+    }
+    private  function init(){
+        $this->filter("permission","Convert");
+        $this->filter("composion","Convert");
+        $this->filter("value","Convert");
+    }
+    public function getData(){
+        return $this->data;
+    }
+     public function getName(){
+        return $this->name;
+    }
+    public function filter($name, $func){
+         $this->filter[$name]=$func;
+    }
+    public function callFunc(&$code,$func=null){
+         $arrayFunc=($func==null)?$this->filter:$func; 
+           foreach($arrayFunc as $key=>$func){
+              call_user_func_array($key."::".$func,array(&$code,$this));
+           }
     }
     public function Convert(){
         $code="";
         if(file_exists("view/pageview/".$this->name.".view")){
+            $arrayFuncdelete=func_get_args();
+            $arrayFunc= (new ArrayObject($this->filter))->getArrayCopy();
+            $this->deletFun($arrayFunc,$arrayFuncdelete);
            $code=file_get_contents("view/pageview/".$this->name.".view");
-           $this->ConvertPermision($code);
-           $this->ConvertValue($code);
-          $this->ConvertComposion($code);
+              $this->callFunc($code,$arrayFunc);
             $this->dataView=$code;
         }else {
             throw new Exception("la view ".$this->name." est introuvable");
@@ -22,36 +45,16 @@ class view {
     public function toString(){
         return $this->dataView;
     }
-    private function ConvertValue(&$code){
-  foreach($this->data as $key=>$value ){
-           $code=preg_replace("/\{%".$key."%\}/", $value,$code);  
-           }
-    }
-    private function ConvertComposion(&$code){
-        composion::getComposonCode($code,$this->data);
-    }
-       private  function ConvertPermision (&$code){
-           
-      $out=[];
-      $permission=http::getInstance()->getTypeUser();
-       preg_match_all("/\{%user:(a|v|u)%\}((.|\n)*?)\{%enduser%\}/",$code,$out,PREG_SET_ORDER);
-       foreach($out as $o){
-           
-       if ($o[1]=='v'&& $o[1]==$permission ){ 
-          
-          $code=str_replace("{%user:v%}".$o[2]."{%enduser%}", $o[2],$code);
-          $code=preg_replace("/\{%user:a%\}((.|\n)*?)\{%enduser%\}/", "",$code);
-          $code=preg_replace("/\{%user:u%\}((.|\n)*?)\{%enduser%\}/", "",$code);
-       }else if($o[1]=='a' && $o[1]==$permission ){
-           $code=str_replace("{%user:a%}".$o[2]."{%enduser%}", $o[2],$code);
-          $code=preg_replace("/\{%user:v%\}((.|\n)*?)\{%enduser%\}/", "",$code);
-          $code=preg_replace("/\{%user:u%\}((.|\n)*?)\{%enduser%\}/", "",$code);
-       }else if($o[1]=='u'&& $o[1]==$permission ){
-          $code=preg_replace("{%user:u%}".$o[2]."{%enduser%}", $o[2],$code);
-          $code=preg_replace("/\{%user:v%\}((.|\n)*?)\{%enduser%\}/", "",$code);
-          $code=preg_replace("/\{%user:a%\}((.|\n)*?)\{%enduser%\}/", "",$code);
-
-       }
+    function deletFun(&$af,$ad){
+        foreach($ad as $val){
+            if (isset($ad[$val])){
+                unset($ad[$val]);
+            }
         }
-     }
+
+    }
+    
+  
+   
+      
 }

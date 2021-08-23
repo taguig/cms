@@ -23,6 +23,10 @@ class autoLoad
         $path = [];
       $path["view"]="view/view.php";
       $path["composion"]="view/composion.php";
+      $path["value"]="view/filter/value.php";
+      $path["filter"]="view/filter/filter.php";
+      $path["permission"]="view/filter/permission.php";
+      $path["composion"]="view/filter/composion.php";
       $path["dataView"]="view/dataView.php";
       $path["page"]="page/page.php";
       $path["cache"]="page/cache.php";
