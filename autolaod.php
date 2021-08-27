@@ -27,10 +27,14 @@ class autoLoad
       $path["filter"]="view/filter/filter.php";
       $path["permission"]="view/filter/permission.php";
       $path["composion"]="view/filter/composion.php";
+      $path["loop"]="view/filter/loop.php";
       $path["dataView"]="view/dataView.php";
       $path["page"]="page/page.php";
       $path["cache"]="page/cache.php";
       $path["index"]="page/page/index.php";
+      $path["dbconfig"]="db/dbconfig.php";
+      $path["dbquery"]="db/dbquery.php";
+      
      
         return  $path;
     }

@@ -10,7 +10,7 @@ public  function viewHeader($data){
   return $f;
 }
 public  function viewBody($data){
-   $f=new view("body",["data"=>"body html","bill"=>"hjjjj","data1"=>["data"=>"google"]]); 
+   $f=new view("body",["data"=>"body html","bill"=>"hjjjj","data1"=>["data"=>"google"],"taguig"=>[["data"=>"bill"],["data"=>"taguig"]]]); 
   
   return $f;
 }

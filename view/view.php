@@ -10,6 +10,7 @@ class view {
       $this->init();
     }
     private  function init(){
+        $this->filter("loop","Convert");
         $this->filter("permission","Convert");
         $this->filter("composion","Convert");
         $this->filter("value","Convert");
@@ -23,10 +24,10 @@ class view {
     public function filter($name, $func){
          $this->filter[$name]=$func;
     }
-    public function callFunc(&$code,$func=null){
+    public function callFunc(&$code,$data=null,$func=null){
          $arrayFunc=($func==null)?$this->filter:$func; 
            foreach($arrayFunc as $key=>$func){
-              call_user_func_array($key."::".$func,array(&$code,$this));
+              call_user_func_array($key."::".$func,array(&$code,$this,$data));
            }
     }
     public function Convert(){
@@ -36,7 +37,7 @@ class view {
             $arrayFunc= (new ArrayObject($this->filter))->getArrayCopy();
             $this->deletFun($arrayFunc,$arrayFuncdelete);
            $code=file_get_contents("view/pageview/".$this->name.".view");
-              $this->callFunc($code,$arrayFunc);
+              $this->callFunc($code,$this->getData(),$arrayFunc);
             $this->dataView=$code;
         }else {
             throw new Exception("la view ".$this->name." est introuvable");

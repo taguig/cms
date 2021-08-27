@@ -8,7 +8,6 @@ http::startSession();
 $http=http::getInstance();
 $http->extracteData();
 $http->route();
-
 $timeend=microtime(true);
 $time=$timeend-$timestart;
  
