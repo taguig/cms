@@ -13,6 +13,7 @@ class view {
         $this->filter("loop","Convert");
         $this->filter("permission","Convert");
         $this->filter("composion","Convert");
+        $this->filter("lang","Convert");
         $this->filter("value","Convert");
     }
     public function getData(){

@@ -10,7 +10,21 @@ private $ExtentionCss="css";
 private $ExtentionJs="js";
 private $ExtentionAjax="ajax";
 private $adressePage = [];
-private $typeUser="a";
+    private $typeUser = "v";
+    private $lang = "fr";
+
+    public function getLang()
+    {
+        return $this->lang;
+    }
+    public function setLang($lang)
+    {
+        if (strlen($lang) > 2) {
+            throw new Exception("erreur dans laungue");
+        } else {
+            return $this->lang = $lang;
+        }
+    }
 private $contentTypeImage = [ 
         "png" => "image/png",
         "jpg"=>"image/jpeg"
@@ -59,9 +73,28 @@ private $ErrorPage=[
           echo "js";
         return ;
         }else {
+            try {
+                $this->Page();
+            } catch (Exception $e) {
+                echo "error";
+            }
+
+            return;
+        }
+    }
+    private function Page()
+    {
+        try {
+            if (empty($this->getParam("p"))) {
           $doc=new index();
+            } else {
+                $docName = $this->getParam("p");
+                $doc = new $docName();
+            }
+          
          echo $doc->View();
-        return ;
+        } catch (Exception $e) {
+            throw $e;
         }
     }
     private function valideteExtention($Extention){
@@ -70,6 +103,13 @@ private $ErrorPage=[
   public function setParam($name, $value)
     {
         $this->param[$name] = $value;
+    }
+    public function getParam($name)
+    {
+        if (isset($this->param[$name])) {
+            return $this->param[$name];
+        }
+        return null;
     }
      public function extracteData()
     {

@@ -9,10 +9,13 @@
     protected $isCacheBody=true;
     protected $isCacheFooter=true;
 
+     public function __construct(){
+       $this->execMiddleware(); 
+    }
     
 public function execMiddleware():bool{
 foreach ($this->middleware as $value) {
-  if(function_exists(array($this,$value))){
+  if(method_exists($this,$value)){
  if (!call_user_func(array($this,$value))){
       throw new Exception("Erreur dans le middelware ".$value);
     }
@@ -64,7 +67,7 @@ public  function viewHeader($data){}
 public  function viewBody($data){}
 public  function viewFooter($data){}
 public  function getData(){
-  return new dataView();
+  return new dataView();;
 }
 protected  function getName(){}
 }
