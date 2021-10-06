@@ -10,11 +10,13 @@ class dbpermission
     public function addPerm($nameFunc, ...$userType)
     {
         $this->perm[$nameFunc] = $userType;
+        
     }
     public function hasPerm($nameFunc, $nameModel)
     {
+       
         $perType = http::getInstance()->getTypeUser();
-        if (in_array($perType, $this->perm[$nameFunc]) && $this->namespace === $nameModel) {
+        if (isset($this->perm[$nameFunc])  && in_array($perType, $this->perm[$nameFunc]) && $this->nameModel === $nameModel) {
             return true;
         } else {
             return false;

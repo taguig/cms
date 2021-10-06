@@ -36,7 +36,7 @@ class autoLoad
       $path["dbconfig"]="db/dbconfig.php";
         $path["dbpermission"] = "db/dbpermission.php";
         $path["dbmodel"] = "db/dbmodel.php";
-        
+    $path["Muser"] = "db/model/Muser.php";
       $path["dbquery"]="db/dbquery.php";
         $path["http"] = "http.php";
      
