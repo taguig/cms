@@ -4,8 +4,7 @@ class loop implements filter {
 //((.|\n)*?)
 //\{%lpend%\}
 public static  function Convert (&$code , view $view,$data=null){
-    $out=[];
-   
+        $out = [];
     if(preg_match_all("/\{%lp (.+)%\}((.|\n)*?)\{%lpend%\}/",$code,$out,PREG_SET_ORDER)!=0){
       
        $lpcode="";

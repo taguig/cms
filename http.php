@@ -1,5 +1,5 @@
 <?php 
-include "page/page/index.php";
+
 class http {
 
 private $param = [];
@@ -13,18 +13,7 @@ private $adressePage = [];
     private $typeUser = "v";
     private $lang = "fr";
 
-    public function getLang()
-    {
-        return $this->lang;
-    }
-    public function setLang($lang)
-    {
-        if (strlen($lang) > 2) {
-            throw new Exception("erreur dans laungue");
-        } else {
-            return $this->lang = $lang;
-        }
-    }
+
 private $contentTypeImage = [ 
         "png" => "image/png",
         "jpg"=>"image/jpeg"
@@ -45,6 +34,18 @@ private $ErrorPage=[
             self::$instance = new self();
         }
         return self::$instance;
+    }
+    public function getLang()
+    {
+        return $this->lang;
+    }
+    public function setLang($lang)
+    {
+        if (strlen($lang) > 2) {
+            throw new Exception("erreur dans laungue");
+        } else {
+            return $this->lang = $lang;
+        }
     }
     public function getTypeUser(){
         return $this->typeUser;
@@ -85,11 +86,13 @@ private $ErrorPage=[
     private function Page()
     {
         try {
-            if (empty($this->getParam("p"))) {
+            if (empty($this->getParam("p")) && $this->countDirAddresse() == 0) {
           $doc=new index();
-            } else {
+            } else if (!empty($this->getParam("p"))) {
                 $docName = $this->getParam("p");
                 $doc = new $docName();
+            } else {
+                throw new Exception("404");
             }
           
          echo $doc->View();
@@ -111,6 +114,10 @@ private $ErrorPage=[
         }
         return null;
     }
+    private function countDirAddresse()
+    {
+        return count($this->adressePage);
+    }
      public function extracteData()
     {
         $data = explode("/", $_SERVER["REQUEST_URI"]);
@@ -128,6 +135,7 @@ private $ErrorPage=[
     {
         $this->adressePage[] = $val;
     }
+
 
     public function getAdressePage($i)
     {

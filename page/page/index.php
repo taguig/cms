@@ -4,7 +4,7 @@ class index extends page {
    public function __construct(){
       
       $this->isCacheHeader=true;
-      $this->isCacheBody=false;
+      $this->isCacheBody = true;
       $this->isCacheFooter=true;
       parent::__construct();
    }
