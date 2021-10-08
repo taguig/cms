@@ -2,10 +2,10 @@
 class index extends page {
 
    public function __construct(){
-      $a = new Muser();
-      $a->callFunction("getEx");
+  /*    $a = new Muser();
+      $a->callFunction("getEx");*/
       $this->isCacheHeader=true;
-      $this->isCacheBody = true;
+      $this->isCacheBody = false;
       $this->isCacheFooter=true;
       parent::__construct();
    }
@@ -15,7 +15,7 @@ public  function viewHeader($data){
   return $f;
 }
 public  function viewBody($data){
-   $f=new view("body",["data"=>$data["data"],"bill"=>"hjjjj","data1"=>["data"=>"google"],"taguig"=>[["data"=>"bill"],["data"=>"taguig"]]]); 
+      $f = new view("body", ["data" => $data["data"], "bill" => $data["data"] . "fdfs", "data1" => ["data" => "google"], "taguig" => [["data" => "bill"], ["data" => "taguig"]]]); 
   
   return $f;
 }

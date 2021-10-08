@@ -16,7 +16,7 @@ public static  function Convert (&$code , view $view,$data=null){
                  $lpcode=$o[2];
                  
                   if (is_array($lpdata)){
-                     
+                      
                    foreach($lpdata as $d){ 
                        $result=$lpcode;
                    $view->callFunc( $result,$d);

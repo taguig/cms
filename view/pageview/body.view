@@ -1966,7 +1966,12 @@ v
 {%lang:fr%}merci{%endlang%}
 {%lang:en%}tanks{%endlang%}
 v
+{%cond%}
+{%if data > bill %}
+bill
+{%endif%}
 
+{%endcond%}
 
 
 

@@ -10,6 +10,7 @@ class view {
       $this->init();
     }
     private  function init(){
+        $this->filter("condition", "Convert");
         $this->filter("loop","Convert");
         $this->filter("permission","Convert");
         $this->filter("composion","Convert");

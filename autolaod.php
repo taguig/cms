@@ -26,6 +26,7 @@ class autoLoad
       $path["value"]="view/filter/value.php";
       $path["filter"]="view/filter/filter.php";
       $path["permission"]="view/filter/permission.php";
+        $path["condition"] = "view/filter/condition.php"; 
       $path["composion"]="view/filter/composion.php";
       $path["loop"]="view/filter/loop.php";
         $path["lang"] = "view/filter/lang.php";
@@ -36,7 +37,7 @@ class autoLoad
       $path["dbconfig"]="db/dbconfig.php";
         $path["dbpermission"] = "db/dbpermission.php";
         $path["dbmodel"] = "db/dbmodel.php";
-    $path["Muser"] = "db/model/Muser.php";
+        $path["Muser"] = "db/model/Muser.php";
       $path["dbquery"]="db/dbquery.php";
         $path["http"] = "http.php";
      
