@@ -84,30 +84,78 @@ class condition implements filter
     }
     private static function equal($val, $val2): bool
     {
-        return $val == $val2;
+          if (gettype($val)=="string" && gettype($val2)=="string"){
+         if (strcmp($val, $val2) == 0) {
+    return true;
+}else {
+    return false;
+}
+    }else {
+return $val==$val2;
+    }  
     }
     private static function equalInf($val, $val2): bool
     {
-        return $val <= $val2;
+         if (gettype($val)=="string" && gettype($val2)=="string"){
+if (strcmp($val, $val2) < 0 || strcmp($val, $val2) == 0) {
+    return true;
+}else {
+    return false;
+}
+    }else {
+return $val!=$val2;
+    }  
     }
 
     private static function equalSup($val, $val2): bool
     {
-        return $val >= $val2;
+        if (gettype($val)=="string" && gettype($val2)=="string"){
+if (strcmp($val, $val2) > 0 || strcmp($val, $val2) == 0) {
+    return true;
+}else {
+    return false;
+}
+    }else {
+return $val>=$val2;
+    }
     }
     private static function Sup($val, $val2): bool
     {
-
-        return $val > $val2;
+           if (gettype($val)=="string" && gettype($val2)=="string"){
+if (strcmp($val, $val2) > 0 ) {
+    return true;
+}else {
+    return false;
+}
+    }else {
+return $val>$val2;
+    }
     }
     private static function Inf($val, $val2): bool
     {
 
-        return $val < $val2;
+           if (gettype($val)=="string" && gettype($val2)=="string"){
+if (strcmp($val, $val2) < 0 ) {
+    return true;
+}else {
+    return false;
+}
+    }else {
+return $val<$val2;
+    }
     }
     private static function equalNot($val, $val2)
     {
+    if (gettype($val)=="string" && gettype($val2)=="string"){
+if (strcmp($val, $val2) !== 0) {
+    return true;
+}else {
+    return false;
+}
+    }else {
+return $val!=$val2;
+    }   
 
-        return $val != $val2;
+       
     }
 }
