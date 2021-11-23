@@ -67,7 +67,7 @@ private $ErrorPage=[
         }else if($this->valideteExtention($this->ExtentionAjax)){
            echo "ajax";
          return ;
-        }else if($this->valideteExtention($this->ExtentionCss)){
+        }else if($this->valideteExtention($this->ExtentionCss) &&  $this->hasPerm("css")){
            echo "css";
          return ;
         }else if($this->valideteExtention($this->ExtentionJs)){
@@ -159,6 +159,9 @@ private $ErrorPage=[
     }
     public static function startSession(){
          session_start();
+    }
+    public static function getRefairenceAdresse(){
+       return $_SERVER["HTTP_REFERER"];
     }
 }
 
