@@ -22,6 +22,7 @@ class autoLoad
     {
         $path = [];
       $path["view"]="view/view.php";
+      $path["viewCss"]="view/viewCss.php";
       $path["composion"]="view/composion.php";
       $path["value"]="view/filter/value.php";
       $path["filter"]="view/filter/filter.php";
@@ -32,7 +33,9 @@ class autoLoad
         $path["lang"] = "view/filter/lang.php";
       $path["dataView"]="view/dataView.php";
       $path["page"]="page/page.php";
+      $path["pageCss"]="page/pageCss.php";
       $path["cache"]="page/cache.php";
+      $path["cacheCss"]="page/cacheCss.php";
       $path["index"]="page/page/index.php";
       $path["dbconfig"]="db/dbconfig.php";
         $path["dbpermission"] = "db/dbpermission.php";
