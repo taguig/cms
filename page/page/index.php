@@ -4,7 +4,7 @@ class index extends page {
    public function __construct(){
   /*    $a = new Muser();
       $a->callFunction("getEx");*/
-      $this->isCacheHeader=true;
+      $this->isCacheHeader=false;
       $this->isCacheBody = false;
       $this->isCacheFooter=true;
       parent::__construct();

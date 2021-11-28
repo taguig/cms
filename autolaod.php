@@ -32,10 +32,13 @@ class autoLoad
       $path["loop"]="view/filter/loop.php";
         $path["lang"] = "view/filter/lang.php";
       $path["dataView"]="view/dataView.php";
+      $path["Iview"]="view/Iview.php";
       $path["page"]="page/page.php";
       $path["pageCss"]="page/pageCss.php";
+      $path["pageJs"]="page/pageJs.php";
       $path["cache"]="page/cache.php";
       $path["cacheCss"]="page/cacheCss.php";
+      $path["cacheJs"]="page/cacheJs.php";
       $path["index"]="page/page/index.php";
       $path["dbconfig"]="db/dbconfig.php";
         $path["dbpermission"] = "db/dbpermission.php";

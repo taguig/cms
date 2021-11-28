@@ -1,6 +1,6 @@
 <?php
 class lang implements filter {
-    public static  function Convert (&$code , view $view,$data=null){
+    public static  function Convert (&$code , Iview $view,$data=null){
         $out=[];
       $lang=http::getInstance()->getLang();
        if(preg_match_all("/\{%lang:([a-z]{2})%\}((.|\n)*?)\{%endlang%\}/",$code,$out,PREG_SET_ORDER)!=0){

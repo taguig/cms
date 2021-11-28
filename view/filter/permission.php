@@ -1,6 +1,6 @@
 <?php
 class permission implements filter {
-      public static  function Convert (&$code , view $view,$data=null){
+      public static  function Convert (&$code , Iview $view,$data=null){
            
       $out=[];
       $permission=http::getInstance()->getTypeUser();

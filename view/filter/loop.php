@@ -3,7 +3,7 @@ class loop implements filter {
     //\{%lp (.+)%\}
 //((.|\n)*?)
 //\{%lpend%\}
-public static  function Convert (&$code , view $view,$data=null){
+public static  function Convert (&$code , Iview $view,$data=null){
         $out = [];
     if(preg_match_all("/\{%lp (.+)%\}((.|\n)*?)\{%lpend%\}/",$code,$out,PREG_SET_ORDER)!=0){
       

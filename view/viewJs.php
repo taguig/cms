@@ -1,5 +1,5 @@
 <?php
-class viewCss implements Iview {
+class viewJs implements Iview {
      private $data;
     private $name;
     private $filter=[];
@@ -28,8 +28,8 @@ class viewCss implements Iview {
     }
      public function Convert(){
         $code="";
-        if(file_exists("../resource/css/viewCss/".$this->name.".cssview")){
-           $code=file_get_contents("../resource/css/viewCss/".$this->name.".cssview");
+        if(file_exists("../resource/js/viewJs/".$this->name.".jsview")){
+           $code=file_get_contents("../resource/js/viewJs/".$this->name.".jsview");
               $this->callFunc($code,$this->getData(),$this->filter);
             $this->dataView=$code;
         }else {

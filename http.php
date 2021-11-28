@@ -67,11 +67,13 @@ private $ErrorPage=[
         }else if($this->valideteExtention($this->ExtentionAjax)){
            echo "ajax";
          return ;
-        }else if($this->valideteExtention($this->ExtentionCss) &&  $this->hasPerm("css")){
-           echo "css";
-         return ;
+        }else if($this->valideteExtention($this->ExtentionCss) ){
+            header("Content-type: text/css", true);
+           echo (new pageCss())->view();
+           return;
         }else if($this->valideteExtention($this->ExtentionJs)){
-          echo "js";
+       header("Content-Type: application/javascript", true);
+           echo (new pageJs())->view();
         return ;
         }else {
             try {

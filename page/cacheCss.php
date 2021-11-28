@@ -1,14 +1,16 @@
 <?php
- class cahceCss {
+ class cacheCss {
      public static function ExistCacheCSS($name){
-     return file_exists("page/cacheCss/".$name.".cacheCss")?true:false;
+     return file_exists("../resource/css/cache/".$name.".cacheCss")?true:false;
      }
-     public static function getCacheCSS(){
-      $cache=file_get_contents("page/cacheCss/".$name.".cacheCss"); 
+     public static function getCacheCSS($name){
+      $cache=file_get_contents("../resource/css/cache/".$name.".cacheCss"); 
+      return $cache;
      }
          public static function createCacheCSS($name,$data,$isCache){
         if ($isCache){
-        file_put_contents("page/cacheCss/".$name.".cacheCss",$data);
+            echo $name;
+        file_put_contents("../resource/css/cache/".$name.".cacheCss",$data);
         return true;
         }
        return false;

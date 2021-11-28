@@ -1,5 +1,5 @@
 <?php
-class pageCss {
+class pageJs {
     private $name;
     private $page;
     
@@ -11,14 +11,14 @@ class pageCss {
    }
     public function view ():string{
      $viewCss="";
-     if (cacheCss::ExistCacheCSS($this->page.".".$this->name)){
-         $viewCss=cacheCss::getCacheCSS($this->page.".".$this->name);
+     if (cacheJs::ExistCacheJS($this->page.".".$this->name)){
+         $viewCss=cacheJs::getCacheJS($this->page.".".$this->name);
      }else {
          $data=$this->getData();
-         $view=new viewCss($this->name,$data);
+         $view=new viewJs($this->name,$data);
          $view->Convert();
          $viewCss=$view->toString();
-         cacheCss::createCacheCSS($this->page.".".$this->name,$viewCss,true);
+         cacheJs::createCacheJS($this->page.".".$this->name,$viewCss,true);
      }
         
        return $viewCss;

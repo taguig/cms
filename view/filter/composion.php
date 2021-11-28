@@ -1,7 +1,7 @@
 <?php
 class composion implements filter {
      private static $file=[];
-     public static function getComposion($name,view $view):string{
+     public static function getComposion($name,Iview $view):string{
          $code="";
         if (file_exists("view/composion/".$name.".composion")){
           if(!isset(self::$file[$name]) || empty(self::$file[$name]) ){
@@ -14,7 +14,7 @@ class composion implements filter {
         }
       throw new Exception("composion non trouver");
      }
-public static function Convert(&$code , view $view,$data=null){
+public static function Convert(&$code , Iview $view,$data=null){
    $out=[];
    $data=$view->getData();
      if(preg_match_all("/\{%composion ([\w]+) (.+)?%\}/",$code,$out,PREG_SET_ORDER)==0){

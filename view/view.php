@@ -1,5 +1,5 @@
 <?php 
-class view {
+class view implements Iview {
     private $dataView;
     private $data;
     private $name;
