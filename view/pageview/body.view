@@ -1967,8 +1967,8 @@ v
 {%lang:en%}tanks{%endlang%}
 v
 {%cond%}
-{%if data > bill %}
-bill
+{%if data < bill %}
+bill 
 {%endif%}
 
 {%endcond%}

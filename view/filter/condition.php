@@ -7,9 +7,12 @@ class condition implements filter
         $result = "";
         if (preg_match_all("/\{%cond%\}((.|\n)*?)\{%endcond%\}/", $code, $out, PREG_SET_ORDER)) {
             foreach ($out as $d) {
+               
                 $result = self::conditionIf($d[1], $data);
                 if (!empty($result)) {
                     $code = str_replace($d[0], $result, $code);
+                }else {
+                   $code = str_replace($d[0], "", $code); 
                 }
             }
         }
@@ -29,6 +32,7 @@ class condition implements filter
         $out = [];
 
         if (preg_match_all("/\{%if (.+)%\}((.|\n)*?)\{%endif%\}/", $code, $out, PREG_SET_ORDER)) {
+          
             if (count($out) == 1) {
                 if (self::validCondition($out[0][1], $data)) {
                     return $out[0][2];
@@ -59,16 +63,16 @@ class condition implements filter
         $val = $data[trim($val)];
         $StringOreation = trim($StringOreation);
         $val2 = $data[trim($val2)];
-
         switch ($StringOreation) {
             case "==":
                 return  self::equal($val, $val2);
                 break;
             case "<":
+               
                 return self::Inf($val, $val2);
                 break;
             case ">":
-
+                 echo self::Sup($val, $val2);
                 return  self::Sup($val, $val2);
                 break;
             case "=>":
@@ -122,6 +126,7 @@ return $val>=$val2;
     private static function Sup($val, $val2): bool
     {
            if (gettype($val)=="string" && gettype($val2)=="string"){
+               
 if (strcmp($val, $val2) > 0 ) {
     return true;
 }else {
