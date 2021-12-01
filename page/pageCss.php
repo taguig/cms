@@ -10,6 +10,9 @@ class pageCss {
       
    }
     public function view ():string{
+         if($this->type=="s"){
+         file_get_contents("../resource/css/simplecss/".$name.".css");    
+        }
      $viewCss="";
      if (cacheCss::ExistCacheCSS($this->page.".".$this->name)){
          $viewCss=cacheCss::getCacheCSS($this->page.".".$this->name);
