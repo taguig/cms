@@ -1,6 +1,7 @@
-var record = function (Value) {
+var record = function (Value,groupe) {
     this.value = Value;
     this.initValue = Value;
+    this.groupe=groupe;
     var NameEvent = ["change"];
     var Event = {};
     var Scope = {};
