@@ -3,7 +3,7 @@ require "autolaod.php";
 autoLoad::autoLoad();
 $timestart=microtime(true);
 
-http::startSession();
+
 $http=http::getInstance();
 $http->extracteData();
 $http->route();
