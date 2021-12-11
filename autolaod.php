@@ -27,10 +27,10 @@ class autoLoad
       $path["value"]="view/filter/value.php";
       $path["filter"]="view/filter/filter.php";
       $path["permission"]="view/filter/permission.php";
-        $path["condition"] = "view/filter/condition.php"; 
+      $path["condition"] = "view/filter/condition.php"; 
       $path["composion"]="view/filter/composion.php";
       $path["loop"]="view/filter/loop.php";
-        $path["lang"] = "view/filter/lang.php";
+      $path["lang"] = "view/filter/lang.php";
       $path["dataView"]="view/dataView.php";
       $path["Iview"]="view/Iview.php";
       $path["page"]="page/page.php";
@@ -41,11 +41,13 @@ class autoLoad
       $path["cacheJs"]="page/cacheJs.php";
       $path["index"]="page/page/index.php";
       $path["dbconfig"]="db/dbconfig.php";
-        $path["dbpermission"] = "db/dbpermission.php";
-        $path["dbmodel"] = "db/dbmodel.php";
-        $path["Muser"] = "db/model/Muser.php";
+      $path["dbpermission"] = "db/dbpermission.php";
+      $path["dbmodel"] = "db/dbmodel.php";
+      $path["Muser"] = "db/model/Muser.php";
       $path["dbquery"]="db/dbquery.php";
-        $path["http"] = "http.php";
+      $path["http"] = "http.php";
+      $path["accesSession"] = "accesSession.php";
+      $path["ajax"] = "resource/ajax/ajax.php";
      
         return  $path;
     }

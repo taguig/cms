@@ -65,7 +65,11 @@ private $ErrorPage=[
            echo "doc";
          return ;
         }else if($this->valideteExtention($this->ExtentionAjax)){
-           echo "ajax";
+          try {
+                $this->ajaxPage();
+            } catch (Exception $e) {
+                echo "error";
+            }
          return ;
         }else if($this->valideteExtention($this->ExtentionCss) ){
             header("Content-type: text/css", true);
@@ -83,6 +87,23 @@ private $ErrorPage=[
             }
 
             return;
+        }
+    }
+
+    private function ajaxPage(){
+             try {
+            if (empty($this->getParam("pAjax")) && $this->countDirAddresse() == 0) {
+          $doc=new index();
+            } else if (!empty($this->getParam("pAjax"))) {
+                $docName = $this->getParam("pAjax");
+                $doc = new $docName();
+            } else {
+                throw new Exception("404");
+            }
+          
+         echo $doc->getData();
+        } catch (Exception $e) {
+            throw $e;
         }
     }
     private function Page()
@@ -115,6 +136,9 @@ private $ErrorPage=[
             return $this->param[$name];
         }
         return null;
+    }
+    public function getAllParam(){
+        return $this->param;
     }
     private function countDirAddresse()
     {

@@ -15,7 +15,7 @@ public  function viewHeader($data){
   return $f;
 }
 public  function viewBody($data){
-      $f = new view("body", ["data" => $data["data"], "bill" => $data["data"] . "fdfs", "data1" => ["data" => "google"], "taguig" => [["data" => "bill"], ["data" => "taguig"]]]); 
+      $f = new view("body", ["data"=>"jj","bill"=>"kkk"]); 
   
   return $f;
 }
@@ -26,9 +26,6 @@ public  function viewFooter($data){
 }
 public  function getData(){
   $t=new dataView();
-      $r=dbquery::query("select * from utilisateurs")[0]; 
-      $t->addBody("data",$r["Nom"]);
-
   return $t;
 }
 }

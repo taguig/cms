@@ -24,3 +24,22 @@ CREATE TABLE `ecommerce`.`utilisateur`
       `nom` VARCHAR(45) NOT NULL , `prenom` VARCHAR(45) NOT NULL ,
        `tel` VARCHAR(15) NOT NULL , `tel2` VARCHAR(15) NOT NULL ,
       `description` TEXT NOT NULL , PRIMARY KEY (`id`)) ENGINE = MyISAM;
+
+ALTER TABLE `vente` ADD `idachat` BIGINT NOT NULL AFTER `dateVente`;
+
+   CREATE TABLE  `ecommerce`.`stock` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `id_produit` int(11) NOT NULL,
+  `id_achat` bigint(20) NOT NULL,
+  `qte` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+CREATE TABLE `ecommerce`.`fournisseur` ( `id` INT NOT NULL AUTO_INCREMENT 
+, `nom` VARCHAR(25) NOT NULL , `prenom` VARCHAR(25) NOT NULL ,
+ `tel` VARCHAR(30) NOT NULL , `tel2` VARCHAR(30) NOT NULL 
+ , `facebook` VARCHAR(255) NOT NULL , `payer` VARCHAR(255) NOT NULL , 
+`adresse` VARCHAR(255) NOT NULL , `description` TEXT NOT NULL , 
+PRIMARY KEY (`id`)) ENGINE = MyISAM;
+
+ALTER TABLE `achat` ADD `taille` INT NOT NULL AFTER `idfounisseur`;
