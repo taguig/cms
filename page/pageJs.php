@@ -12,7 +12,7 @@ class pageJs {
    }
     public function view ():string{
         if($this->type=="s"){
-        return file_get_contents("../resource/js/simplejs/".$name.".js");    
+        return file_get_contents("resource/js/simplejs/".$this->name.".js");    
         }
      $viewCss="";
      if (cacheJs::ExistCacheJS($this->page.".".$this->name)){
