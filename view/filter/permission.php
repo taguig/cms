@@ -1,4 +1,5 @@
 <?php
+namespace base;
 class permission implements filter {
       public static  function Convert (&$code , Iview $view,$data=null){
            

@@ -1,4 +1,5 @@
 <?php
+namespace base;
  class page {
 
     protected $middleware =[];
@@ -17,10 +18,10 @@ public function execMiddleware():bool{
 foreach ($this->middleware as $value) {
   if(method_exists($this,$value)){
  if (!call_user_func(array($this,$value))){
-      throw new Exception("Erreur dans le middelware ".$value);
+      throw new \Exception("Erreur dans le middelware ".$value);
     }
   }else {
-     throw new Exception(" middelware n'existe pas ".$value);
+     throw new \Exception(" middelware n'existe pas ".$value);
   }
    
 }
@@ -67,7 +68,7 @@ public  function viewHeader($data){}
 public  function viewBody($data){}
 public  function viewFooter($data){}
 public  function getData(){
-  return new dataView();;
+  return new base\dataView();;
 }
 protected  function getName(){}
 }

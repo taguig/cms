@@ -1,9 +1,10 @@
 <?php
+namespace base;
 abstract class  ajax {
 private $data;
 public function __construct(){
     $method=$_SERVER['REQUEST_METHOD'];
-    $http=http::getInstance();
+    $http=base\http::getInstance();
     $dataGet=$http->getAllParam();
     $dataPost=$_POST;
     switch($method){

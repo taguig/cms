@@ -6,48 +6,73 @@ class autoLoad
     public static function autoLoad()
     {
         spl_autoload_register(function ($class) {
-           
+            try{
+           $arrClass=explode("\\",$class);
             if (empty(self::$path)) {
                 self::$path = self::getPath();
             }
-            if (empty(self::$path[$class])) {
-             
-                throw new Exception("class introuvable :" . $class);
+            if (isset(self::$path[$arrClass[0]][$arrClass[1]])) {
+
+               require_once(self::$path[$arrClass[0]][$arrClass[1]]);
+               return; 
             }
-            require_once(self::$path[$class]);
+             }catch(Exception $e){
+                 echo $class;
+                 print_r($arrClass);
+             }
+           
+           
+            throw new Exception("class introuvable :" . $class);
+            
         });
     }
 
     public static function getPath()
     {
-        $path = [];
-      $path["view"]="view/view.php";
-      $path["viewCss"]="view/viewCss.php";
-      $path["composion"]="view/composion.php";
-      $path["value"]="view/filter/value.php";
-      $path["filter"]="view/filter/filter.php";
-      $path["permission"]="view/filter/permission.php";
-      $path["condition"] = "view/filter/condition.php"; 
-      $path["composion"]="view/filter/composion.php";
-      $path["loop"]="view/filter/loop.php";
-      $path["lang"] = "view/filter/lang.php";
-      $path["dataView"]="view/dataView.php";
-      $path["Iview"]="view/Iview.php";
-      $path["page"]="page/page.php";
-      $path["pageCss"]="page/pageCss.php";
-      $path["pageJs"]="page/pageJs.php";
-      $path["cache"]="page/cache.php";
-      $path["cacheCss"]="page/cacheCss.php";
-      $path["cacheJs"]="page/cacheJs.php";
-      $path["index"]="page/page/index.php";
-      $path["dbconfig"]="db/dbconfig.php";
-      $path["dbpermission"] = "db/dbpermission.php";
-      $path["dbmodel"] = "db/dbmodel.php";
-      $path["Muser"] = "db/model/Muser.php";
-      $path["dbquery"]="db/dbquery.php";
-      $path["http"] = "http.php";
-      $path["accesSession"] = "accesSession.php";
-      $path["ajax"] = "resource/ajax/ajax.php";
+        $path = [
+         "base"=>["view"=>"view/view.php",
+              "viewCss"=>"view/viewCss.php",
+              "composion"=>"view/composion.php",
+              "value"=>"view/filter/value.php",
+              "filter"=>"view/filter/filter.php",
+              "permission"=>"view/filter/permission.php",
+              "condition" => "view/filter/condition.php",
+              "composion"=>"view/filter/composion.php",
+              "composion"=>"view/filter/composion.php",
+              "loop"=>"view/filter/loop.php",
+              "lang" => "view/filter/lang.php",
+              "dataView"=>"view/dataView.php",
+              "Iview"=>"view/Iview.php",
+              "page"=>"page/page.php",
+              "pageCss"=>"page/pageCss.php",
+              "pageJs"=>"page/pageJs.php",
+              "cache"=>"page/cache.php",
+              "cacheCss"=>"page/cacheCss.php",
+              "cacheJs"=>"page/cacheJs.php",
+              "dbconfig"=>"db/dbconfig.php",
+              "dbpermission" => "db/dbpermission.php",
+              "dbmodel"=> "db/dbmodel.php",
+              "Muser"=> "db/model/Muser.php",
+              "dbquery"=>"db/dbquery.php",
+              "http"=>"http.php",
+              "accesSession" => "accesSession.php",
+              "ajax" => "resource/ajax/ajax.php"
+        ],
+        "web"=>["index"=>"resource/page/pageUser/index.php"]
+
+
+        ];
+     
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
      
         return  $path;
     }

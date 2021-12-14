@@ -1,4 +1,5 @@
 <?php
+namespace base;
  class cacheCss {
      public static function ExistCacheJS($name){
      return file_exists("resource/js/cache/".$name.".cacheJs")?true:false;

@@ -1,11 +1,12 @@
 <?php
+namespace base;
 class pageCss {
     private $name;
     private $page;
     private $type;
     
    public function __construct(){
-       $http=http::getInstance();
+       $http=base\http::getInstance();
       $this->name= $http->getParam("name");
       $this->page= $http->getParam("page");
       $this->type= $http->getParam("type");
@@ -16,14 +17,14 @@ class pageCss {
         return file_get_contents("resource/css/simplecss/".$this->name.".css");    
         }
      $viewCss="";
-     if (cacheCss::ExistCacheCSS($this->page.".".$this->name)){
-         $viewCss=cacheCss::getCacheCSS($this->page.".".$this->name);
+     if (base\cacheCss::ExistCacheCSS($this->page.".".$this->name)){
+         $viewCss=base\cacheCss::getCacheCSS($this->page.".".$this->name);
      }else {
          $data=$this->getData();
-         $view=new viewCss($this->name,$data);
+         $view=new base\viewCss($this->name,$data);
          $view->Convert();
          $viewCss=$view->toString();
-         cacheCss::createCacheCSS($this->page.".".$this->name,$viewCss,true);
+         base\cacheCss::createCacheCSS($this->page.".".$this->name,$viewCss,true);
      }
         
        return $viewCss;

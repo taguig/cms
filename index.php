@@ -3,8 +3,8 @@ require "autolaod.php";
 autoLoad::autoLoad();
 $timestart=microtime(true);
 
-http::startSession();
-$http=http::getInstance();
+base\http::startSession();
+$http=base\http::getInstance();
 $http->extracteData();
 $http->route();
 //$timeend=microtime(true);

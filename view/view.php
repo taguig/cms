@@ -1,4 +1,5 @@
 <?php 
+namespace base;
 class view implements Iview {
     private $dataView;
     private $data;
@@ -10,12 +11,12 @@ class view implements Iview {
       $this->init();
     }
     private  function init(){
-        $this->filter("condition", "Convert");
-        $this->filter("loop","Convert");
-        $this->filter("permission","Convert");
-        $this->filter("composion","Convert");
-        $this->filter("lang","Convert");
-        $this->filter("value","Convert");
+        $this->filter("base\condition", "Convert");
+        $this->filter("base\loop","Convert");
+        $this->filter("base\permission","Convert");
+        $this->filter("base\composion","Convert");
+        $this->filter("base\lang","Convert");
+        $this->filter("base\\value","Convert");
     }
     public function getData(){
         return $this->data;
@@ -34,15 +35,15 @@ class view implements Iview {
     }
     public function Convert(){
         $code="";
-        if(file_exists("view/pageview/".$this->name.".view")){
+        if(file_exists("resource/page/view/".$this->name.".view")){
             $arrayFuncdelete=func_get_args();
-            $arrayFunc= (new ArrayObject($this->filter))->getArrayCopy();
+            $arrayFunc= (new \ArrayObject($this->filter))->getArrayCopy();
             $this->deletFun($arrayFunc,$arrayFuncdelete);
-           $code=file_get_contents("view/pageview/".$this->name.".view");
+           $code=file_get_contents("resource/page/view/".$this->name.".view");
               $this->callFunc($code,$this->getData(),$arrayFunc);
             $this->dataView=$code;
         }else {
-            throw new Exception("la view ".$this->name." est introuvable");
+            throw new \Exception("la view ".$this->name." est introuvable");
         }
     }
     public function toString(){

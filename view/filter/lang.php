@@ -1,4 +1,5 @@
 <?php
+namespace base;
 class lang implements filter {
     public static  function Convert (&$code , Iview $view,$data=null){
         $out=[];

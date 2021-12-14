@@ -1,4 +1,5 @@
 <?php
+namespace base;
 class  dbquery{
     private static $Pdoconnect;
     private static $dbtype="dbconfig::mysql";

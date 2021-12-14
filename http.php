@@ -1,5 +1,5 @@
 <?php 
-
+namespace base;
 class http {
 
 private $param = [];
@@ -110,9 +110,9 @@ private $ErrorPage=[
     {
         try {
             if (empty($this->getParam("p")) && $this->countDirAddresse() == 0) {
-          $doc=new index();
+          $doc=new \web\index();
             } else if (!empty($this->getParam("p"))) {
-                $docName = $this->getParam("p");
+                $docName = "\\web\\".$this->getParam("p");
                 $doc = new $docName();
             } else {
                 throw new Exception("404");

@@ -1,10 +1,11 @@
 <?php
+namespace base;
 class dbmodel
 {
     protected $perm;
     public function __construct()
     {
-        $this->perm = new dbpermission(__CLASS__);
+        $this->perm = new base\dbpermission(__CLASS__);
         $this->initPerm();
     }
     protected function initPerm()

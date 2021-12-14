@@ -1,4 +1,5 @@
 <?php
+namespace base;
 class dbpermission
 {
     private $perm = [];

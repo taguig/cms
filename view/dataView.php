@@ -1,4 +1,5 @@
 <?php
+namespace base;
 class dataView {
 private $dataHeader=[];
 private $dataBody=[];

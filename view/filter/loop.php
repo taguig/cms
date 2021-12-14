@@ -1,4 +1,5 @@
 <?php
+namespace base;
 class loop implements filter {
     //\{%lp (.+)%\}
 //((.|\n)*?)
@@ -26,7 +27,7 @@ public static  function Convert (&$code , Iview $view,$data=null){
                
                   
                    }else {
-           throw new Exception($out[1]." ces pas un tableux");
+           throw new \Exception($out[1]." ces pas un tableux");
        }
              $code= str_replace($o[0],$fincode,$code);          
          

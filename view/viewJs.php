@@ -1,5 +1,6 @@
 <?php
-class viewJs implements Iview {
+namespace base;
+class viewJs implements base\Iview {
      private $data;
     private $name;
     private $filter=[];
@@ -33,7 +34,7 @@ class viewJs implements Iview {
               $this->callFunc($code,$this->getData(),$this->filter);
             $this->dataView=$code;
         }else {
-            throw new Exception("la cssview ".$this->name." est introuvable");
+            throw new \Exception("la cssview ".$this->name." est introuvable");
         }
     }
       public function toString(){

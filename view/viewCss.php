@@ -33,7 +33,7 @@ class viewCss implements Iview {
               $this->callFunc($code,$this->getData(),$this->filter);
             $this->dataView=$code;
         }else {
-            throw new Exception("la cssview ".$this->name." est introuvable");
+            throw new \Exception("la cssview ".$this->name." est introuvable");
         }
     }
       public function toString(){

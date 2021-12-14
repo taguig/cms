@@ -1,4 +1,5 @@
 <?php
+namespace base;
 class accesSession {
     private static  $Session;
     public function __construct(){
