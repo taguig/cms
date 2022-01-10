@@ -14,15 +14,17 @@ class autoLoad
             if (isset(self::$path[$arrClass[0]][$arrClass[1]])) {
 
                require_once(self::$path[$arrClass[0]][$arrClass[1]]);
-               return; 
+               return true; 
+            }else {
+                 return false;
             }
              }catch(Exception $e){
-                 echo $class;
-                 print_r($arrClass);
+                
+                return false;
              }
            
            
-            throw new Exception("class introuvable :" . $class);
+           
             
         });
     }

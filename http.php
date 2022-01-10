@@ -109,14 +109,19 @@ private $ErrorPage=[
     private function Page()
     {
         try {
-            if (empty($this->getParam("p")) && $this->countDirAddresse() == 0) {
+            if ( $this->countDirAddresse() == 0) {
           $doc=new \web\index();
             } else if (!empty($this->getParam("p"))) {
                 $docName = "\\web\\".$this->getParam("p");
-                $doc = new $docName();
-            } else {
-                throw new Exception("404");
-            }
+                if (class_exists($docName,$autoLoad=true)){
+                  $doc = new $docName();  
+                }else {
+                    throw new \Exception("404");
+                }
+                
+            }else {
+                   throw new \Exception("404"); 
+                }
           
          echo $doc->View();
         } catch (Exception $e) {
