@@ -29,12 +29,15 @@ return true;
 } 
 
 public function  View(){
-$data=$this->getData();
 $name=$this->getName();
 $stringHeader="";
 $stringBody="";
 $stringFooter="";
-if(cache::ExistsHeadCache($name) && $this->isCacheHeader){
+$isCacheHeader=cache::ExistsHeadCache($name) && $this->isCacheHeader;
+$isCacheBody=cache::ExistsBodyCache($name) && $this->isCacheBody;
+$isCacheFooter=cache::ExistsFooterCache($name) && $this->isCacheFooter;
+$data=$this->getData($isCacheHeader ,$isCacheBody,$isCacheFooter);
+if($isCacheHeader){
 $stringHeader=cache::getHeadCache($name);
 }else{
   $viewHeader=call_user_func(array($this,$this->nameFacHeader),$data->getDataHeader());
@@ -44,7 +47,7 @@ $stringHeader=cache::getHeadCache($name);
 }
 
 
-if(cache::ExistsBodyCache($name) && $this->isCacheBody){
+if($isCacheBody){
 $stringBody=cache::getBodyCache($name);
 }else{
   $viewBody=call_user_func(array($this,$this->nameFacBody),$data->getDataBody());
@@ -53,7 +56,7 @@ $stringBody=cache::getBodyCache($name);
   cache::createBodyCache($name,$stringBody,$this->isCacheBody);
 }
 
-if(cache::ExistsFooterCache($name) && $this->isCacheFooter){
+if($isCacheFooter){
  $stringFooter=cache::getFooterCache($name);
 }else{
   $viewFooter=call_user_func(array($this,$this->nameFacFooter),$data->getDataFooter());
@@ -68,7 +71,7 @@ public  function viewHeader($data){}
 public  function viewBody($data){}
 public  function viewFooter($data){}
 public  function getData(){
-  return new base\dataView();;
+  return new base\dataView();
 }
-protected  function getName(){}
+protected  function getName($isCacheHeader,$isCacheBody,$isCacheFooter){}
 }

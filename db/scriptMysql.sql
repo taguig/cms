@@ -43,3 +43,15 @@ CREATE TABLE `ecommerce`.`fournisseur` ( `id` INT NOT NULL AUTO_INCREMENT
 PRIMARY KEY (`id`)) ENGINE = MyISAM;
 
 ALTER TABLE `achat` ADD `taille` INT NOT NULL AFTER `idfounisseur`;
+
+CREATE TABLE `ecommerce`.`prixPoduit`
+ ( `id` BIGINT NOT NULL AUTO_INCREMENT , `id_achat` BIGINT NOT NULL ,
+  `prixVente` BIGINT NOT NULL , `typePrix` INT NOT NULL , PRIMARY KEY (`id`)) 
+  ENGINE = MyISAM;
+
+CREATE TABLE IF NOT EXISTS `imageproduit` (
+  `idImage` bigint(20) NOT NULL AUTO_INCREMENT,
+  `url` varchar(255) NOT NULL,
+  `idProduit` bigint(20) NOT NULL,
+  PRIMARY KEY (`idImage`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;

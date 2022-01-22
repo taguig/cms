@@ -25,7 +25,7 @@ public  function viewFooter($data){
    
   return $f;  
 }
-public  function getData(){
+protected  function getData($isCacheHeader,$isCacheBody,$isCacheFooter){
   $t=new \base\dataView();
   return $t;
 }
